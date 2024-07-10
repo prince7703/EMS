@@ -2,8 +2,6 @@
 
 ## Usage
 
-This starter pack includes a basic setup for using **Tailwind CSS with React**. To start building your own components and styles, follow these steps:
-
 1. Clone the repositoy to your local machine.
   2. Install the required packages.
     ```
