@@ -1,13 +1,32 @@
-import "./App.css";
+import React, { useState } from 'react'
+import Home from './Home/Home'
 
-function App() {
+import {Routes,Route} from 'react-router-dom'
+import Login from './components/Login';
+import Assign from './components/Assign';
+import AssignmentList from './components/AssignmentList';
+import Navbar from './components/Navbar';
+import Footer from './components/Footer';
+
+
+export default function App() {
+   const [islogin,setlogin]= useState(true);
+   const [assignments, setAssignments] = useState([]);
+ 
   return (
-    <main class="flex justify-center gap-4 flex-col min-h-screen">
-      <h1 class="text-3xl text-center font-bold underline">React & Tailwind CSS Starter Pack</h1>
-      <p class="text-center text-xl">This is a starter pack for React & Tailwind CSS projects.</p>
-      <img src="https://bit.ly/3wsmzTy" alt="meme" class="mx-auto" />
-    </main>
-  );
-}
+      <div >
+        <Navbar islogin={islogin} />
+        <Routes>
+          <Route index path='/' element={<Home islogin={islogin}/> }/>
+          <Route path='/login' element={<Login islogin={islogin} setlogin={setlogin} />} />
+          <Route path='/assign'  element={islogin? <Assign islogin={islogin} assignments={assignments} setAssignments={setAssignments} /> :<Login islogin={islogin} setlogin={setlogin} />} />
+          <Route path='/assignments'  element={ islogin?  <AssignmentList assignments={assignments} islogin={islogin} />:<Login islogin={islogin} setlogin={setlogin} />} />
 
-export default App;
+        
+        </Routes>
+
+        <Footer/>
+     
+    </div>
+  )
+}
